@@ -14,7 +14,7 @@ import Workout from 'components/workout';
 export const WeekContainerComponent: React.FC = () => {
   const currentWeekDates = getCurrentWeekDates();
   return (
-    <div className={classes['week-container']}>
+    <div className={classes['week-container']} data-testid="week-container">
       {currentWeekDates.map((date) => {
         const workouts = WORKOUTS.filter((_, index) => index === date.getDay());
         return (
