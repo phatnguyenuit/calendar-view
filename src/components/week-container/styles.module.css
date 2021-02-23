@@ -1,0 +1,43 @@
+.week-container {
+  display: grid;
+  /* font-family: 'Open Sans'; */
+  gap: 10px;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  padding: 16px;
+  position: relative;
+  width: 100%;
+}
+
+.date-container {}
+
+.week-day {
+  color: #6A7988;
+  font-size: 10px;
+  font-weight: 600;
+  line-height: 14px;
+  margin-bottom: 9px;
+  text-transform: uppercase;
+}
+
+
+.workout-container {
+  background: #F3F5F8;
+  mix-blend-mode: normal;
+  opacity: 0.8;
+  border-radius: 6px;
+  /* border: 1px solid red; */
+  padding: 7px 10px;
+}
+
+.workout-date {
+  font-size: 11px;
+  line-height: 15px;
+  color: #728096;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
+.workout-date.today {
+  color: #5A57CB;
+  font-weight: bold;
+}
