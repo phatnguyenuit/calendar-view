@@ -4,14 +4,16 @@ import { WorkoutContainer } from 'types/common';
 import { WORKOUT_EXERCISES_PREFIX } from 'constants/string';
 import Exercise from '../exercise';
 import MoreIcon from '../more-icon';
+import PlusIcon from '../plus-icon';
 import classes from './styles.module.css';
 import { normalize } from 'utils/string';
 
 export const WorkoutComponent: React.FC<WorkoutProps> = ({
-  name: workoutName,
   exercises,
-  index: workoutIndex,
   weekday,
+  name: workoutName,
+  index: workoutIndex,
+  onCreateExercise,
 }) => {
   return (
     <div className={classes.container}>
@@ -59,6 +61,11 @@ export const WorkoutComponent: React.FC<WorkoutProps> = ({
           </div>
         )}
       </Droppable>
+      <div className={classes.createExercise}>
+        <button type="button" onClick={onCreateExercise}>
+          <PlusIcon />
+        </button>
+      </div>
     </div>
   );
 };
@@ -71,4 +78,5 @@ export default Workout;
 export interface WorkoutProps extends WorkoutContainer {
   index: number;
   weekday: number;
+  onCreateExercise: React.MouseEventHandler;
 }
