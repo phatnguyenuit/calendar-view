@@ -1,5 +1,5 @@
 import { WorkoutCollection } from 'types/common';
-import { randomIntegerInRange } from 'utils';
+import { randomIntegerInRange } from 'utils/number';
 
 export const WORKOUTS: WorkoutCollection[] = [
   'Chest',

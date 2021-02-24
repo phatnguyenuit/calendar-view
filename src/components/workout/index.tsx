@@ -1,13 +1,17 @@
 import { memo } from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { WorkoutCollection } from 'types/common';
+import { WORKOUT_EXERCISES_PREFIX } from 'constants/string';
 import Exercise from '../exercise';
 import MoreIcon from '../more-icon';
 import classes from './styles.module.css';
+import { normalize } from 'utils/string';
 
 export const WorkoutComponent: React.FC<WorkoutProps> = ({
   name,
   exercises,
+  index,
+  weekday,
 }) => (
   <div className={classes.container}>
     <div className={classes.header}>
@@ -18,12 +22,16 @@ export const WorkoutComponent: React.FC<WorkoutProps> = ({
         <MoreIcon />
       </button>
     </div>
-    <Droppable droppableId={`workout-exercises-${name}`}>
+    <Droppable
+      droppableId={`${weekday}-${index}-${WORKOUT_EXERCISES_PREFIX}${normalize(
+        name,
+      )}`}
+    >
       {(provided) => (
         <div {...provided.droppableProps} ref={provided.innerRef}>
           {exercises.map((exercise, index) => (
             <Draggable
-              key={`${exercise.name}+${index}`}
+              key={`${normalize(exercise.name)}+${index}`}
               draggableId={`${exercise.name}-${index}`}
               index={index}
             >
@@ -50,4 +58,7 @@ Workout.displayName = 'Workout';
 
 export default Workout;
 
-export type WorkoutProps = WorkoutCollection;
+export interface WorkoutProps extends WorkoutCollection {
+  index: number;
+  weekday: number;
+}
