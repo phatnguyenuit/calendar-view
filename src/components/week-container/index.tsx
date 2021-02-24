@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useCallback } from 'react';
 import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import {
   getCurrentWeekDates,
@@ -14,7 +14,7 @@ import classes from './styles.module.css';
 
 const currentWeekDates = getCurrentWeekDates();
 export const WeekContainerComponent: React.FC = () => {
-  const { workouts, handleDragEnd } = useWeekContainer();
+  const { workouts, handleDragEnd, handleCreateExercise } = useWeekContainer();
 
   return (
     <DragDropContext onDragEnd={handleDragEnd}>
@@ -57,9 +57,13 @@ export const WeekContainerComponent: React.FC = () => {
                               {...provided.dragHandleProps}
                             >
                               <Workout
+                                {...workout}
                                 index={index}
                                 weekday={weekday}
-                                {...workout}
+                                onCreateExercise={handleCreateExercise(
+                                  weekday,
+                                  index,
+                                )}
                               />
                             </div>
                           )}

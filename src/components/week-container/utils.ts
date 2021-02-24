@@ -7,6 +7,7 @@ import {
 } from 'constants/string';
 import { WORKOUTS } from 'constants/seeds';
 import { normalize } from 'utils/string';
+import { WorkoutExercise } from '../../types/common';
 
 export const swapArray = <TItem = any>(
   items: TItem[],
@@ -83,8 +84,49 @@ export const insertArrayAtPosition = <TItem = any>(
   return cloned;
 };
 
+export const generateExerciseFactory = () => {
+  let count = 0;
+  const createExercise = () => {
+    const char = String.fromCharCode(65 + count);
+    const exercise: WorkoutExercise = {
+      name: `Exercise ${char}`,
+      sets: [
+        {
+          reps: count + 1,
+          weight: (count + 1) * 10,
+        },
+      ],
+    };
+
+    count += 1;
+    return exercise;
+  };
+  return createExercise;
+};
+
+const generateExercise = generateExerciseFactory();
 export const useWeekContainer = () => {
   const [workouts, setWorkouts] = useState(prepareWorkoutsState(WORKOUTS));
+  const handleCreateExercise = useCallback(
+    (weekday: number, workoutIndex: number) => () => {
+      const exercise = generateExercise();
+      setWorkouts((prevWks) => {
+        return {
+          ...prevWks,
+          [weekday]: prevWks[weekday].map((wk, wkIndex) => {
+            if (wkIndex === workoutIndex) {
+              return {
+                ...wk,
+                exercises: [...wk.exercises, exercise],
+              };
+            }
+            return wk;
+          }),
+        };
+      });
+    },
+    [setWorkouts],
+  );
   const handleDragEnd = useCallback((result: DropResult) => {
     const { source, destination } = result;
     if (!destination) return;
@@ -241,5 +283,6 @@ export const useWeekContainer = () => {
   return {
     workouts,
     handleDragEnd,
+    handleCreateExercise,
   };
 };
