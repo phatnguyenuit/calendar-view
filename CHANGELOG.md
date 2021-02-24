@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/phatnguyenuit/calendar-view/compare/1.1.0...1.2.0) (2021-02-24)
+
+
+### Features
+
+* implement feature to generate exercise ([a414869](https://github.com/phatnguyenuit/calendar-view/commit/a414869df7d94b7804225e1b1ea699390419aace))
+
 # [1.1.0](https://github.com/phatnguyenuit/calendar-view/compare/1.0.1...1.1.0) (2021-02-24)
 
 
