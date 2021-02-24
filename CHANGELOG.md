@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/phatnguyenuit/calendar-view/compare/1.2.0...1.2.1) (2021-02-24)
+
+
+### Bug Fixes
+
+* remove un-used imports ([1107607](https://github.com/phatnguyenuit/calendar-view/commit/110760713f85855d5f1bfb8579b0803848698cc1))
+
 # [1.2.0](https://github.com/phatnguyenuit/calendar-view/compare/1.1.0...1.2.0) (2021-02-24)
 
 
