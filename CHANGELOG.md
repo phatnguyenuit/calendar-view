@@ -1,3 +1,18 @@
+# [1.1.0](https://github.com/phatnguyenuit/calendar-view/compare/1.0.1...1.1.0) (2021-02-24)
+
+
+### Bug Fixes
+
+* fix layout height ([603f240](https://github.com/phatnguyenuit/calendar-view/commit/603f24034a5dd2684d5850213e546bf9520d1d60))
+* fix responsive for container ([e1f2423](https://github.com/phatnguyenuit/calendar-view/commit/e1f24235e8617587df4e60db81aeb49cdbb574b5))
+
+
+### Features
+
+* add dnd for workouts ([c1063f9](https://github.com/phatnguyenuit/calendar-view/commit/c1063f97e833db4ccba6630a528465b0e01a5188))
+* handle drag drop workout containers ([60e16e2](https://github.com/phatnguyenuit/calendar-view/commit/60e16e2a499f6c0e57e73310a971fb7a34bc288c))
+* handle swap exercises in the same workout ([2e75e1f](https://github.com/phatnguyenuit/calendar-view/commit/2e75e1f603a695cffc9a70cfec03754ee7a8c602))
+
 ## [1.0.1](https://github.com/phatnguyenuit/calendar-view/compare/1.0.0...1.0.1) (2021-02-23)
 
 # 1.0.0 (2021-02-23)
