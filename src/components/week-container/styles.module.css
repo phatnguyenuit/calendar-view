@@ -1,16 +1,17 @@
 .week-container {
   display: grid;
-  /* font-family: 'Open Sans'; */
   gap: 10px;
   grid-template-columns: repeat(7, minmax(0, 1fr));
+  min-width: 1200px;
+  overflow: auto hidden;
   padding: 16px;
   position: relative;
   width: 100%;
-  min-width: 1200px;
-  overflow-x: auto;
 }
 
-.date-container {}
+.date-container {
+  min-height: 95vh;
+}
 
 .week-day {
   color: #6A7988;
@@ -24,10 +25,10 @@
 
 .workout-container {
   background: #F3F5F8;
+  border-radius: 6px;
+  height: 100%;
   mix-blend-mode: normal;
   opacity: 0.8;
-  border-radius: 6px;
-  /* border: 1px solid red; */
   padding: 7px 10px;
 }
 
