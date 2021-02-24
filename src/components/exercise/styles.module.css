@@ -12,7 +12,7 @@
 .name {
   text-align: right;
   font-weight: 600;
-  font-size: 13px;
+  font-size: 1.3rem;
   line-height: 18px;
   text-align: right;
   color: #000000;
@@ -21,7 +21,7 @@
 
 .description {
   display: flex;
-  font-size: 10px;
+  font-size: 1rem;
   line-height: 14px;
   color: #919CAD;
 }

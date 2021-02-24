@@ -1,45 +1,80 @@
 import { memo } from 'react';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 import {
   getCurrentWeekDates,
   getDate2Digits,
   getWeekDay,
   isToday,
-  classnames,
-} from 'utils/index';
-
-import classes from './styles.module.css';
-import { WORKOUTS } from 'constants/seeds';
+} from 'utils/date';
+import classnames from 'utils/classnames';
+import { WORKOUT_CONTAINER_PREFIX } from 'constants/string';
 import Workout from 'components/workout';
+import { useWeekContainer } from './utils';
+import classes from './styles.module.css';
 
+const currentWeekDates = getCurrentWeekDates();
 export const WeekContainerComponent: React.FC = () => {
-  const currentWeekDates = getCurrentWeekDates();
+  const { workouts, handleDragEnd } = useWeekContainer();
+
   return (
-    <div className={classes['week-container']} data-testid="week-container">
-      {currentWeekDates.map((date) => {
-        const workouts = WORKOUTS.filter((_, index) => index === date.getDay());
-        return (
-          <div key={date.toString()} className={classes['date-container']}>
-            <div className={classes['week-day']}>
-              <span>{getWeekDay(date)}</span>
-            </div>
-            <div className={classes['workout-container']}>
-              <div
-                className={classnames(classes['workout-date'], {
-                  [classes.today]: isToday(date),
-                })}
-              >
-                <span>{getDate2Digits(date)}</span>
+    <DragDropContext onDragEnd={handleDragEnd}>
+      <div className={classes['week-container']} data-testid="week-container">
+        {currentWeekDates.map((date) => {
+          const weekday = date.getDay();
+          const dayWorkouts = workouts[weekday] ?? [];
+          return (
+            <div key={date.toString()} className={classes['date-container']}>
+              <div className={classes['week-day']}>
+                <span>{getWeekDay(date)}</span>
               </div>
-              <div>
-                {workouts.map((workout, index) => (
-                  <Workout key={`${workout.name}+${index}`} {...workout} />
-                ))}
+              <div className={classes['workout-container']}>
+                <div
+                  className={classnames(classes['workout-date'], {
+                    [classes.today]: isToday(date),
+                  })}
+                >
+                  <span>{getDate2Digits(date)}</span>
+                </div>
+                <Droppable
+                  droppableId={`${WORKOUT_CONTAINER_PREFIX}${weekday}`}
+                >
+                  {(provided) => (
+                    <div
+                      {...provided.droppableProps}
+                      ref={provided.innerRef}
+                      className={classes.workouts}
+                    >
+                      {dayWorkouts.map((workout, index) => (
+                        <Draggable
+                          key={`${workout.name}+${index}`}
+                          draggableId={`${workout.name}-${index}`}
+                          index={index}
+                        >
+                          {(provided) => (
+                            <div
+                              ref={provided.innerRef}
+                              {...provided.draggableProps}
+                              {...provided.dragHandleProps}
+                            >
+                              <Workout
+                                index={index}
+                                weekday={weekday}
+                                {...workout}
+                              />
+                            </div>
+                          )}
+                        </Draggable>
+                      ))}
+                      {provided.placeholder}
+                    </div>
+                  )}
+                </Droppable>
               </div>
             </div>
-          </div>
-        );
-      })}
-    </div>
+          );
+        })}
+      </div>
+    </DragDropContext>
   );
 };
 

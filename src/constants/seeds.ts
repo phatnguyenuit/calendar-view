@@ -1,7 +1,7 @@
-import { WorkoutCollection } from 'types/common';
-import { randomIntegerInRange } from 'utils';
+import { WorkoutContainer } from 'types/common';
+import { randomIntegerInRange } from 'utils/number';
 
-export const WORKOUTS: WorkoutCollection[] = [
+export const WORKOUTS: WorkoutContainer[] = [
   'Chest',
   'Leg',
   'Arm',

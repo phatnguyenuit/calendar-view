@@ -17,7 +17,7 @@
 
 .name {
   font-weight: bold;
-  font-size: 10px;
+  font-size: 1rem;
   line-height: 14px;
   text-transform: uppercase;
   color: #5A57CB;
@@ -31,4 +31,8 @@
   outline: none;
   background-color: transparent;
   padding: 0;
+}
+
+.exercises {
+  min-height: 32px;
 }

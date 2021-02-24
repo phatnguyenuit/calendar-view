@@ -8,7 +8,7 @@ export interface WorkoutExercise {
   sets: WorkoutExerciseSet[];
 }
 
-export interface WorkoutCollection {
+export interface WorkoutContainer {
   name: string;
   exercises: WorkoutExercise[];
 }
