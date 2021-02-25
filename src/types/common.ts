@@ -12,3 +12,7 @@ export interface WorkoutContainer {
   name: string;
   exercises: WorkoutExercise[];
 }
+
+export interface WorkoutsPerWeekDay {
+  [weekDay: number]: WorkoutContainer[];
+}

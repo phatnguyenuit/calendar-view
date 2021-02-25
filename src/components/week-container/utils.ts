@@ -7,7 +7,7 @@ import {
 } from 'constants/string';
 import { WORKOUTS } from 'constants/seeds';
 import { normalize } from 'utils/string';
-import { WorkoutExercise } from '../../types/common';
+import { WorkoutExercise, WorkoutsPerWeekDay } from 'types/common';
 
 export const swapArray = <TItem = any>(
   items: TItem[],
@@ -24,9 +24,6 @@ export const swapArray = <TItem = any>(
   });
 };
 
-export interface WorkoutsPerWeekDay {
-  [weekDay: number]: WorkoutContainer[];
-}
 export const prepareWorkoutsState = (workouts: WorkoutContainer[]) => {
   return workouts.reduce((prev, wk, weekDay) => {
     return {

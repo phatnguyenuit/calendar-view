@@ -1,12 +1,12 @@
 import { memo } from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
-import { WorkoutContainer } from 'types/common';
 import { WORKOUT_EXERCISES_PREFIX } from 'constants/string';
+import { normalize } from 'utils/string';
+import { WorkoutContainer } from 'types/common';
 import Exercise from '../exercise';
 import MoreIcon from '../more-icon';
 import PlusIcon from '../plus-icon';
 import classes from './styles.module.css';
-import { normalize } from 'utils/string';
 
 export const WorkoutComponent: React.FC<WorkoutProps> = ({
   exercises,
