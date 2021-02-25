@@ -1,3 +1,5 @@
+## [1.2.2](https://github.com/phatnguyenuit/calendar-view/compare/1.2.1...1.2.2) (2021-02-25)
+
 ## [1.2.1](https://github.com/phatnguyenuit/calendar-view/compare/1.2.0...1.2.1) (2021-02-24)
 
 
