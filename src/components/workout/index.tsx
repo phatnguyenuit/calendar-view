@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import { memo, useMemo } from 'react';
 import { Droppable, Draggable } from 'react-beautiful-dnd';
 import { WORKOUT_EXERCISES_PREFIX } from 'constants/string';
 import { normalize } from 'utils/string';
@@ -15,6 +15,13 @@ export const WorkoutComponent: React.FC<WorkoutProps> = ({
   index: workoutIndex,
   onCreateExercise,
 }) => {
+  const droppableId = useMemo(
+    () =>
+      `${weekday}-${workoutIndex}-${WORKOUT_EXERCISES_PREFIX}${normalize(
+        workoutName,
+      )}`,
+    [weekday, workoutIndex, workoutName],
+  );
   return (
     <div className={classes.container}>
       <div className={classes.header}>
@@ -25,38 +32,31 @@ export const WorkoutComponent: React.FC<WorkoutProps> = ({
           <MoreIcon />
         </button>
       </div>
-      <Droppable
-        droppableId={`${weekday}-${workoutIndex}-${WORKOUT_EXERCISES_PREFIX}${normalize(
-          workoutName,
-        )}`}
-      >
+      <Droppable droppableId={droppableId}>
         {(provided) => (
           <div
             {...provided.droppableProps}
             ref={provided.innerRef}
             className={classes.exercises}
           >
-            {exercises.map((exercise, exIndex) => (
-              <Draggable
-                key={`${weekday}-${workoutIndex}-${normalize(
-                  exercise.name,
-                )}-${exIndex}`}
-                draggableId={`${weekday}-${workoutIndex}-${normalize(
-                  exercise.name,
-                )}-${exIndex}`}
-                index={exIndex}
-              >
-                {(provided) => (
-                  <div
-                    ref={provided.innerRef}
-                    {...provided.draggableProps}
-                    {...provided.dragHandleProps}
-                  >
-                    <Exercise {...exercise} />
-                  </div>
-                )}
-              </Draggable>
-            ))}
+            {exercises.map((exercise, exIndex) => {
+              const key = `${weekday}-${workoutIndex}-${normalize(
+                exercise.name,
+              )}-${exIndex}`;
+              return (
+                <Draggable key={key} draggableId={key} index={exIndex}>
+                  {(provided) => (
+                    <div
+                      ref={provided.innerRef}
+                      {...provided.draggableProps}
+                      {...provided.dragHandleProps}
+                    >
+                      <Exercise {...exercise} />
+                    </div>
+                  )}
+                </Draggable>
+              );
+            })}
             {provided.placeholder}
           </div>
         )}

@@ -22,6 +22,7 @@ export const WeekContainerComponent: React.FC = () => {
         {currentWeekDates.map((date) => {
           const weekday = date.getDay();
           const dayWorkouts = workouts[weekday] ?? [];
+          const droppableId = `${WORKOUT_CONTAINER_PREFIX}${weekday}`;
           return (
             <div key={date.toString()} className={classes['date-container']}>
               <div className={classes['week-day']}>
@@ -35,40 +36,37 @@ export const WeekContainerComponent: React.FC = () => {
                 >
                   <span>{getDate2Digits(date)}</span>
                 </div>
-                <Droppable
-                  droppableId={`${WORKOUT_CONTAINER_PREFIX}${weekday}`}
-                >
+                <Droppable droppableId={droppableId}>
                   {(provided) => (
                     <div
                       {...provided.droppableProps}
                       ref={provided.innerRef}
                       className={classes.workouts}
                     >
-                      {dayWorkouts.map((workout, index) => (
-                        <Draggable
-                          key={`${workout.name}+${index}`}
-                          draggableId={`${workout.name}-${index}`}
-                          index={index}
-                        >
-                          {(provided) => (
-                            <div
-                              ref={provided.innerRef}
-                              {...provided.draggableProps}
-                              {...provided.dragHandleProps}
-                            >
-                              <Workout
-                                {...workout}
-                                index={index}
-                                weekday={weekday}
-                                onCreateExercise={handleCreateExercise(
-                                  weekday,
-                                  index,
-                                )}
-                              />
-                            </div>
-                          )}
-                        </Draggable>
-                      ))}
+                      {dayWorkouts.map((workout, index) => {
+                        const key = `${workout.name}-${index}`;
+                        return (
+                          <Draggable key={key} draggableId={key} index={index}>
+                            {(provided) => (
+                              <div
+                                ref={provided.innerRef}
+                                {...provided.draggableProps}
+                                {...provided.dragHandleProps}
+                              >
+                                <Workout
+                                  {...workout}
+                                  index={index}
+                                  weekday={weekday}
+                                  onCreateExercise={handleCreateExercise(
+                                    weekday,
+                                    index,
+                                  )}
+                                />
+                              </div>
+                            )}
+                          </Draggable>
+                        );
+                      })}
                       {provided.placeholder}
                     </div>
                   )}
