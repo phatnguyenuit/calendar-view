@@ -1,3 +1,10 @@
+## [1.2.4](https://github.com/phatnguyenuit/calendar-view/compare/1.2.3...1.2.4) (2021-03-02)
+
+
+### Bug Fixes
+
+* fix saturday workout drag drop issue ([9149c3d](https://github.com/phatnguyenuit/calendar-view/commit/9149c3de28c4544f5786f8d465eba07dd5d3a5c5))
+
 ## [1.2.3](https://github.com/phatnguyenuit/calendar-view/compare/1.2.2...1.2.3) (2021-02-25)
 
 ## [1.2.2](https://github.com/phatnguyenuit/calendar-view/compare/1.2.1...1.2.2) (2021-02-25)
