@@ -255,7 +255,7 @@ export const useWeekContainer = () => {
           return {
             ...prevWks,
             [dstWeekday]: insertArrayAtPosition(
-              prevWks[dstWeekday],
+              prevWks[dstWeekday] ?? [],
               destination.index,
               prevWks[srcWeekday][source.index],
             ),
