@@ -7,6 +7,7 @@ import {
   isToday,
 } from 'utils/date';
 import classnames from 'utils/classnames';
+import { normalize } from 'utils/string';
 import { WORKOUT_CONTAINER_PREFIX } from 'constants/string';
 import Workout from 'components/workout';
 import { useWeekContainer } from './utils';
@@ -36,7 +37,7 @@ export const WeekContainerComponent: React.FC = () => {
                 >
                   <span>{getDate2Digits(date)}</span>
                 </div>
-                <Droppable droppableId={droppableId}>
+                <Droppable type="workout" droppableId={droppableId}>
                   {(provided) => (
                     <div
                       {...provided.droppableProps}
@@ -44,7 +45,7 @@ export const WeekContainerComponent: React.FC = () => {
                       className={classes.workouts}
                     >
                       {dayWorkouts.map((workout, index) => {
-                        const key = `${workout.name}-${index}`;
+                        const key = `${normalize(workout.name)}-${index}`;
                         return (
                           <Draggable key={key} draggableId={key} index={index}>
                             {(provided) => (

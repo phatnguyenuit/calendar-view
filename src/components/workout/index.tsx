@@ -32,7 +32,7 @@ export const WorkoutComponent: React.FC<WorkoutProps> = ({
           <MoreIcon />
         </button>
       </div>
-      <Droppable droppableId={droppableId}>
+      <Droppable type="exercise" droppableId={droppableId}>
         {(provided) => (
           <div
             {...provided.droppableProps}
