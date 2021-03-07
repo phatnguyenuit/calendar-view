@@ -1,3 +1,10 @@
+## [1.2.5](https://github.com/phatnguyenuit/calendar-view/compare/1.2.4...1.2.5) (2021-03-07)
+
+
+### Bug Fixes
+
+* fix issue for workout container drag and drop ([5d9cd73](https://github.com/phatnguyenuit/calendar-view/commit/5d9cd73c59fdb4656d06082d5b430c991ff8b07c))
+
 ## [1.2.4](https://github.com/phatnguyenuit/calendar-view/compare/1.2.3...1.2.4) (2021-03-02)
 
 
